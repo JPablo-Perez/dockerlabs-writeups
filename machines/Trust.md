@@ -76,8 +76,6 @@ Abrí la ruta descubierta en Firefox y revisé su respuesta completa:
 curl -i http://172.17.0.2/secret.php
 ```
 
-![Contenido de secret.php](../images/trust/01-secret-php.png)
-
 El HTML mostraba:
 
 ```text
@@ -118,8 +116,6 @@ host: 172.17.0.2
 login: mario
 password: chocolate
 ```
-
-![Hydra confirma las credenciales SSH](../images/trust/02-hydra-ssh.png)
 
 **Resultado:** una contraseña incluida en un diccionario conocido permitió autenticar al usuario vía SSH. En un sistema real, esto justificaría reforzar la política de contraseñas y los controles de acceso remoto.
 
@@ -164,8 +160,6 @@ User mario may run the following commands:
     (ALL) /usr/bin/vim
 ```
 
-![Regla sudo que permite ejecutar Vim](../images/trust/03-sudo-vim.png)
-
 El permiso es peligroso porque **Vim permite ejecutar comandos externos**. Por tanto, si se ejecuta con `sudo`, esos comandos pueden heredar privilegios elevados. La técnica está documentada en [GTFOBins para Vim](https://gtfobins.github.io/gtfobins/vim/).
 
 Ejecuté:
@@ -185,8 +179,6 @@ id
 root
 uid=0(root) gid=0(root) groups=0(root)
 ```
-
-![Escalada de privilegios confirmada con whoami e id](../images/trust/04-root.png)
 
 **Resultado final: `root` dentro del contenedor Trust.** No se explotó una vulnerabilidad de Vim: se aprovechó una **configuración insegura de `sudo`** que permitía utilizarlo como root.
 
